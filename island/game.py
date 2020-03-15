@@ -1,6 +1,6 @@
-from .game import universe
+import island.universe
 
-Universe = universe.Universe
+Universe = island.universe.Universe
 
 
 class Game:
@@ -8,9 +8,9 @@ class Game:
         self.day = 0
         self.base_universe = Universe(num_blue_eyed=num_blue_eyed)
 
-    def run_witch(self):
+    def run_guru(self):
         self.base_universe.invalidate_imagined_universes(
-            lambda u, m: u.num_blue_eyed != 0
+            lambda u, m: len(u.blue_eyed_meeple) != 0
         )
 
     def advance_one_day(self):

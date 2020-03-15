@@ -1,19 +1,18 @@
-import meeple
+import island.meeple
 
-Meeple = meeple.Meeple
+Meeple = island.meeple.Meeple
 
 
 class Universe:
     def __init__(self, num_blue_eyed):
         self.day = 0
         # ignore meeple with brown eyes for now
-        self.num_blue_eyed = num_blue_eyed
-        self.blue_eyed_meeple = []
+        self.blue_eyed_meeple = [None] * num_blue_eyed
 
         for i in range(num_blue_eyed):
-            self.meeple.append(Meeple(
+            self.blue_eyed_meeple[i] = Meeple(
                 containing_universe=self,
-            ))
+            )
 
     def invalidate_imagined_universes(self, validator):
         for m in self.blue_eyed_meeple:

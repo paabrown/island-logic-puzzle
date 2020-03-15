@@ -1,20 +1,19 @@
-import universe
-
-Universe = universe.Universe
-
-
 class Meeple:
     def __init__(self, containing_universe):
         self.containing_universe = containing_universe
         self.imagined_safe_universes = []
 
-        self.imagined_safe_universes.append(
-            Universe(num_blue_eyed=containing_universe.num_blue_eyed - 1)
-        )
+        blue_eyed_for_imagined = len(containing_universe.blue_eyed_meeple) - 1
+        if blue_eyed_for_imagined >= 0:
+            self.imagined_safe_universes.append(
+                island.universe.Universe(
+                    num_blue_eyed=blue_eyed_for_imagined,
+                )
+            )
 
     def check_imagined_universes_against_containing(self):
         return self.invalidate_imagined_universes(
-            lambda u, m: is_imagined_universe_valid(u, m.containing_u)
+            lambda u, m: is_imagined_universe_valid(u, m.containing_universe)
         )
 
     def invalidate_imagined_universes(self, validator):
@@ -23,8 +22,8 @@ class Meeple:
         self.imagined_safe_universes = [
             u for u in self.imagined_safe_universes
             if validator(
-                imagined_u=u,
-                meeple=self,
+                u=u,
+                m=self,
             )
         ]
 
@@ -35,11 +34,17 @@ class Meeple:
 
     def imagine_meeple_leaving(self):
         for u in self.imagined_safe_universes:
-            u.have_meeple_leave()
+            u.leave_phase()
 
     def should_self_stay(self):
         return bool(self.imagined_safe_universes)
 
 
-def is_imagined_universe_valid(self, imagined_u, containing_u):
-    return abs(imagined_u - containing_u) <= 1
+def is_imagined_universe_valid(imagined_u, containing_u):
+
+    return abs(
+        len(imagined_u.blue_eyed_meeple)
+        - len(containing_u.blue_eyed_meeple)) <= 1
+
+
+import island.universe
