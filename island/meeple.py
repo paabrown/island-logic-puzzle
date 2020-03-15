@@ -41,7 +41,6 @@ class Meeple:
 
 
 def is_imagined_universe_valid(imagined_u, containing_u):
-
     return abs(
         len(imagined_u.blue_eyed_meeple)
         - len(containing_u.blue_eyed_meeple)) <= 1
