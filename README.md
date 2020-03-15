@@ -8,7 +8,7 @@ I'm not actually 100% satisfied with the code - specifically the code for the "i
 
 --
 
-Basically the way it works is - each person on the island is called a meeple. Each meeple imagines/simulates all the possible universes in which they do not have blue eyes. They then compare what happens in those simulations (eg how many people leave the island) compared to how many people they see leaving the island around them. If those differ, they invalidate the possible universes they are imagining (thease imagined universes also recursively have imaginary meeple doing the same thing). If they have no remaining universes in which they don't have blue eyes, they leave the island.
+Basically the way it works is - each person on the island is called a meeple. Each meeple imagines/simulates all the possible universes in which they do not have blue eyes. They then compare what happens in those simulations (eg how many people leave the island) compared to how many people they see leaving the island around them. If those differ, they invalidate the possible universes they are imagining (these imagined universes also recursively have imaginary meeple doing the same thing). If they have no remaining universes in which they don't have blue eyes, they leave the island.
 
 The reason I only simulate universes in which they don't have blue eyes is to avoid infinite recursion.
 
